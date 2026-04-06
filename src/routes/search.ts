@@ -8,7 +8,7 @@ export default async function (app: FastifyInstance) {
     const result = await db.query(
       `SELECT * FROM messages
       WHERE conversation_id=$1
-      AND search_vector @@ plainto_tsquery($2)
+      AND content_tsv @@ plainto_tsquery($2)
       ORDER BY created_at DESC`,
       [conversation_id, q]
     );
