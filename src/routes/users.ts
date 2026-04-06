@@ -2,16 +2,16 @@ import { FastifyInstance } from "fastify";
 import { db } from "../db.js";
 
 export default async function (app: FastifyInstance) {
-  app.post("/users", async (req) => {
-    const { username } = req.body as any;
+  app.post("/users/:userId", async (req) => {
+    const { userId } = req.params as any;
 
     const result = await db.query(
-      `INSERT INTO users (username)
-      VALUES ($1)
-      RETURNING *`,
-      [username]
+      `SELECT id, username FROM users
+      WHERE id != $1
+      ORDER BY username ASC`,
+      [userId]
     );
 
-    return result.rows[0];
+    return result.rows;
   });
 }

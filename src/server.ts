@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import messageRoutes from "./routes/messages.js";
 import searchRoutes from "./routes/search.js";
+import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import conversationRoutes from "./routes/conversations.js";
 
@@ -13,6 +14,7 @@ await app.register(cors, {
 
 app.register(messageRoutes);
 app.register(searchRoutes);
+app.register(authRoutes);
 app.register(userRoutes);
 app.register(conversationRoutes);
 
