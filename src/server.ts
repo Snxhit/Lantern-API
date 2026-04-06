@@ -20,7 +20,7 @@ app.register(conversationRoutes);
 
 async function start() {
   try {
-    await app.listen({ port: 9393 });
+    await app.listen({ port: 9393, host: "0.0.0.0" });
     console.log("Server running on 9393!");
   } catch (err) {
     app.log.error(err);
