@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 import { db } from "../db.js";
 
 export default async function (app: FastifyInstance) {
-  app.post("/users/:userId", async (req) => {
+  app.get("/users/:userId", async (req) => {
     const { userId } = req.params as any;
 
     const result = await db.query(
